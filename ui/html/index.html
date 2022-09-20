@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+        }
+        .f {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Order - {{ .OrderUID}}</h1>
+</header>
+
+<div style="display: flex">
+    <div class="f">
+        <h3>Order</h3>
+        <p>OrderUID: {{.OrderUID}}</p>
+        <p>TrackNumber: {{.TrackNumber}}</p>
+        <p>Entry: {{.Entry}}</p>
+        <p>Locale: {{.Locale}}</p>
+        <p>InternalSignature: {{.InternalSignature}}</p>
+        <p>CustomerID: {{.CustomerID}}</p>
+        <p>DeliveryService: {{.DeliveryService}}</p>
+        <p>Shardkey: {{.Shardkey}}</p>
+        <p>SmID: {{.SmID}}</p>
+        <p>DateCreated: {{.DateCreated}}</p>
+        <p>OofShard: {{.OofShard}}</p>
+    </div>
+
+    <div class="f">
+        <h3>Delivery</h3>
+        <p>Name: {{.Delivery.Name}}</p>
+        <p>Phone: {{.Delivery.Phone}}</p>
+        <p>Zip: {{.Delivery.Zip}}</p>
+        <p>City: {{.Delivery.City}}</p>
+        <p>Address: {{.Delivery.Address}}</p>
+        <p>Region: {{.Delivery.Region}}</p>
+        <p>Email: {{.Delivery.Email}}</p>
+    </div>
+
+    <div class="f">
+        <h3>Payment</h3>
+        <p>Transaction: {{.Payment.Transaction}}</p>
+        <p>RequestID: {{.Payment.RequestID}}</p>
+        <p>Currency: {{.Payment.Currency}}</p>
+        <p>Provider: {{.Payment.Provider}}</p>
+        <p>Amount: {{.Payment.Amount}}</p>
+        <p>PaymentDt: {{.Payment.PaymentDt}}</p>
+        <p>Bank: {{.Payment.Bank}}</p>
+        <p>DeliveryCost: {{.Payment.DeliveryCost}}</p>
+        <p>GoodsTotal: {{.Payment.GoodsTotal}}</p>
+        <p>CustomFee: {{.Payment.CustomFee}}</p>
+    </div>
+</div>
+
+
+
+<h3>Items</h3>
+{{if .Items}}
+<table>
+    <tr>
+        <th>ChrtID</th>
+        <th>TrackNumber</th>
+        <th>Price</th>
+        <th>Rid</th>
+        <th>Name</th>
+        <th>Sale</th>
+        <th>Size</th>
+        <th>TotalPrice</th>
+        <th>NmID</th>
+        <th>Brand</th>
+        <th>Status</th>
+    </tr>
+    {{range .Items}}
+    <tr>
+        <td>{{.ChrtID}}</td>
+        <td>{{.TrackNumber}}</td>
+        <td>{{.Price}}</td>
+        <td>{{.Rid}}</td>
+        <td>{{.Name}}</td>
+        <td>{{.Sale}}</td>
+        <td>{{.Size}}</td>
+        <td>{{.TotalPrice}}</td>
+        <td>{{.NmID}}</td>
+        <td>{{.Brand}}</td>
+        <td>{{.Status}}</td>
+    </tr>
+</table>
+{{end}}
+{{else}}
+<p>Здесь ничего нет... пока что!</p>
+{{end}}
+</body>
+</html>
