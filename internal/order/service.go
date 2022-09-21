@@ -20,7 +20,7 @@ type Service struct {
 }
 
 func NewService(ctx context.Context, repo db.Repo, nc *nats.Conn, logger *zap.SugaredLogger) *Service {
-	return &Service{ctx: ctx, repo: repo, nc: nc, logger: logger, cache: make(map[string]*dto.OrderDTO, 100)}
+	return &Service{ctx: ctx, repo: repo, nc: nc, logger: logger, cache: make(map[string]*dto.OrderDTO, db.MaxCountOfOrders)}
 }
 
 func (s *Service) Init() {

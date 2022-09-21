@@ -6,7 +6,7 @@ import (
 	"wb_l0/internal/dto"
 )
 
-const maxCountOfOrders = 100
+const MaxCountOfOrders = 100
 
 type OrderRepo interface {
 	UploadOrder(ord *dto.OrderDTO) error
@@ -107,7 +107,7 @@ func (d *DB) UploadOrder(ord *dto.OrderDTO) error {
 }
 
 func (d *DB) GetAllOrders() ([]*dto.OrderDTO, error) {
-	orders := make([]*dto.OrderDTO, 0, maxCountOfOrders)
+	orders := make([]*dto.OrderDTO, 0, MaxCountOfOrders)
 	rows, err := d.Query(d.ctx, `SELECT id, order_uid, track_number, entry, delivery, payment, locale, internal_signature, 
        customer_id, delivery_service,shardkey, sm_id, date_created, oof_shard from orders ORDER BY date_created DESC LIMIT 100`)
 	defer rows.Close()
